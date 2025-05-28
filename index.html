@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>QuadRec - Record & Share</title>
+  <link rel="stylesheet" href="style.css">
+  <script async src="https://static.addtoany.com/menu/page.js"></script>
+</head>
+<body>
+  <h1>QuadRec - Record & Share</h1>
+
+  <!-- TEXT -->
+  <section>
+    <h2>Write and Share Text</h2>
+    <textarea id="textInput" placeholder="Write your text here..."></textarea>
+    <div class="actions">
+      <button onclick="downloadText()">Download Text</button>
+    </div>
+    <div class="a2a_kit a2a_kit_size_32 a2a_default_style"
+         data-a2a-url="" data-a2a-title="Shared text from QuadRec">
+      <a class="a2a_button_facebook"></a>
+      <a class="a2a_button_twitter"></a>
+      <a class="a2a_button_whatsapp"></a>
+      <a class="a2a_button_telegram"></a>
+      <a class="a2a_button_email"></a>
+      <a class="a2a_button_copy_link"></a>
+      <a class="a2a_button_reddit"></a>
+      <a class="a2a_button_pinterest"></a>
+      <a class="a2a_button_linkedin"></a>
+    </div>
+  </section>
+
+  <!-- AUDIO -->
+  <section>
+    <h2>Record and Share Audio</h2>
+    <button id="startAudio">Start Audio Recording</button>
+    <button id="stopAudio" disabled>Stop</button>
+    <audio id="audioPlayback" controls></audio>
+    <div class="actions">
+      <a id="downloadAudio" download="recording.wav">Download Audio</a>
+    </div>
+    <div class="a2a_kit a2a_kit_size_32 a2a_default_style"
+         data-a2a-url="" data-a2a-title="Audio from QuadRec">
+      <a class="a2a_button_facebook"></a>
+      <a class="a2a_button_twitter"></a>
+      <a class="a2a_button_whatsapp"></a>
+      <a class="a2a_button_telegram"></a>
+      <a class="a2a_button_email"></a>
+      <a class="a2a_button_copy_link"></a>
+      <a class="a2a_button_reddit"></a>
+      <a class="a2a_button_pinterest"></a>
+      <a class="a2a_button_linkedin"></a>
+    </div>
+  </section>
+
+  <!-- VIDEO -->
+  <section>
+    <h2>Record and Share Video</h2>
+    <video id="videoPlayback" autoplay muted></video><br>
+    <button id="startVideo">Start Video Recording</button>
+    <button id="stopVideo" disabled>Stop</button>
+    <div class="actions">
+      <a id="downloadVideo" download="recording.webm">Download Video</a>
+    </div>
+    <div class="a2a_kit a2a_kit_size_32 a2a_default_style"
+         data-a2a-url="" data-a2a-title="Video from QuadRec">
+      <a class="a2a_button_facebook"></a>
+      <a class="a2a_button_twitter"></a>
+      <a class="a2a_button_whatsapp"></a>
+      <a class="a2a_button_telegram"></a>
+      <a class="a2a_button_email"></a>
+      <a class="a2a_button_copy_link"></a>
+      <a class="a2a_button_reddit"></a>
+      <a class="a2a_button_pinterest"></a>
+      <a class="a2a_button_linkedin"></a>
+    </div>
+  </section>
+
+  <!-- IMAGE -->
+  <section>
+    <h2>Upload and Share Image</h2>
+    <input type="file" accept="image/*" id="imageInput">
+    <img id="imagePreview" style="max-width:100%; margin-top:10px;">
+    <div class="actions">
+      <a id="downloadImage" download="image.png">Download Image</a>
+    </div>
+    <div class="a2a_kit a2a_kit_size_32 a2a_default_style"
+         data-a2a-url="" data-a2a-title="Image from QuadRec">
+      <a class="a2a_button_facebook"></a>
+      <a class="a2a_button_twitter"></a>
+      <a class="a2a_button_whatsapp"></a>
+      <a class="a2a_button_telegram"></a>
+      <a class="a2a_button_email"></a>
+      <a class="a2a_button_copy_link"></a>
+      <a class="a2a_button_reddit"></a>
+      <a class="a2a_button_pinterest"></a>
+      <a class="a2a_button_linkedin"></a>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
