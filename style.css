@@ -1,8 +1,75 @@
-<style>
-    body { font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; background: #f8f9fa; }
-    h1 { text-align: center; }
-    textarea, input[type="url"] { width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px; }
-    .preview img, .preview video, .preview audio { max-width: 100%; margin-bottom: 10px; }
-    button { padding: 10px 20px; font-size: 16px; margin-top: 10px; cursor: pointer; border: none; border-radius: 5px; background: #007bff; color: white; }
-    .link-box { word-break: break-all; background: #eee; padding: 10px; border-radius: 5px; }
-  </style>
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 720px;
+  margin: auto;
+  padding: 20px;
+  background: #f4f6f9;
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+  color: #0077cc;
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+textarea,
+input[type="url"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+button {
+  margin-top: 20px;
+  padding: 12px 20px;
+  font-size: 1rem;
+  border: none;
+  background-color: #0077cc;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+button:hover {
+  background-color: #005fa3;
+}
+
+.link-box {
+  background: #e9ecef;
+  border-left: 5px solid #0077cc;
+  padding: 10px;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  word-break: break-all;
+  border-radius: 5px;
+}
+
+.preview {
+  margin-top: 20px;
+}
+
+.preview img,
+.preview video,
+.preview audio,
+.preview iframe {
+  max-width: 100%;
+  margin-bottom: 15px;
+  border-radius: 8px;
+}
+
+.a2a_kit {
+  margin-top: 20px;
+  text-align: center;
+}
