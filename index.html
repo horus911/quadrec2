@@ -6,76 +6,119 @@
   <title>Quadrec2 - Partage simplifié</title>
   <script async src="https://static.addtoany.com/menu/page.js"></script>
   <style>
-    body { font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; background: #f8f9fa; }
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+      background: #f8f9fa;
+    }
     h1 { text-align: center; }
-    textarea, input[type="url"] { width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px; }
-    .preview img, .preview video, .preview audio { max-width: 100%; margin-bottom: 10px; }
-    button { padding: 10px 20px; font-size: 16px; margin-top: 10px; cursor: pointer; border: none; border-radius: 5px; background: #007bff; color: white; }
-    .link-box { word-break: break-all; background: #eee; padding: 10px; border-radius: 5px; }
+    textarea, input[type="url"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .preview img, .preview video, .preview audio, .preview iframe {
+      max-width: 100%;
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background: #007bff;
+      color: white;
+    }
+    .link-box {
+      word-break: break-all;
+      background: #eee;
+      padding: 10px;
+      border-radius: 5px;
+    }
   </style>
 </head>
 <body>
-<h1>Quadrec2</h1>
+  <h1>Quadrec2</h1>
 
-<label>Texte à partager :</label>
-<textarea id="textInput" rows="4" placeholder="Écris ton message ici..."></textarea>
+  <label>Texte à partager :</label>
+  <textarea id="textInput" rows="4" placeholder="Écris ton message ici..."></textarea>
 
-<label>Lien d'image :</label>
-<input type="url" id="imgInput" placeholder="https://exemple.com/image.jpg">
+  <label>Lien d'image :</label>
+  <input type="url" id="imgInput" placeholder="https://exemple.com/image.jpg">
 
-<label>Lien audio :</label>
-<input type="url" id="audioInput" placeholder="https://exemple.com/audio.mp3">
+  <label>Lien audio :</label>
+  <input type="url" id="audioInput" placeholder="https://exemple.com/audio.mp3">
 
-<label>Lien vidéo :</label>
-<input type="url" id="videoInput" placeholder="https://exemple.com/video.mp4">
+  <label>Lien vidéo (YouTube, Vimeo, Dailymotion, etc.) :</label>
+  <input type="url" id="videoInput" placeholder="https://www.youtube.com/watch?v=...">
 
-<button onclick="generateLink()">Générer un lien de partage</button>
+  <button onclick="generateLink()">Générer un lien de partage</button>
 
-<h3>Lien généré :</h3>
-<div class="link-box" id="linkOutput"></div>
+  <h3>Lien généré :</h3>
+  <div class="link-box" id="linkOutput"></div>
 
-<div class="preview" id="preview"></div>
+  <div class="preview" id="preview"></div>
 
-<!-- AddToAny -->
-<div class="a2a_kit a2a_default_style a2a_animate_slide">
-  <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
-  <a class="a2a_button_facebook"></a>
-  <a class="a2a_button_twitter"></a>
-  <a class="a2a_button_whatsapp"></a>
-</div>
+  <!-- AddToAny -->
+  <div class="a2a_kit a2a_default_style a2a_animate_slide">
+    <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+    <a class="a2a_button_facebook"></a>
+    <a class="a2a_button_twitter"></a>
+    <a class="a2a_button_whatsapp"></a>
+  </div>
 
-<script>
-function generateLink() {
-  const text = encodeURIComponent(document.getElementById('textInput').value.trim());
-  const img = encodeURIComponent(document.getElementById('imgInput').value.trim());
-  const audio = encodeURIComponent(document.getElementById('audioInput').value.trim());
-  const video = encodeURIComponent(document.getElementById('videoInput').value.trim());
+  <script>
+    function generateLink() {
+      const text = encodeURIComponent(document.getElementById('textInput').value.trim());
+      const img = encodeURIComponent(document.getElementById('imgInput').value.trim());
+      const audio = encodeURIComponent(document.getElementById('audioInput').value.trim());
+      const video = encodeURIComponent(document.getElementById('videoInput').value.trim());
 
-  const url = `${location.origin}${location.pathname}?text=${text}&img=${img}&audio=${audio}&video=${video}`;
+      const url = `${location.origin}${location.pathname}?text=${text}&img=${img}&audio=${audio}&video=${video}`;
+      document.getElementById('linkOutput').textContent = url;
+      updatePreview();
+      if (window.a2a) a2a.init();
+    }
 
-  document.getElementById('linkOutput').textContent = url;
-  updatePreview();
-  if (window.a2a) a2a.init();
-}
+    function updatePreview() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const text = decodeURIComponent(urlParams.get('text') || '');
+      const img = decodeURIComponent(urlParams.get('img') || '');
+      const audio = decodeURIComponent(urlParams.get('audio') || '');
+      const video = decodeURIComponent(urlParams.get('video') || '');
 
-function updatePreview() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const text = decodeURIComponent(urlParams.get('text') || '');
-  const img = decodeURIComponent(urlParams.get('img') || '');
-  const audio = decodeURIComponent(urlParams.get('audio') || '');
-  const video = decodeURIComponent(urlParams.get('video') || '');
+      let html = '';
+      if (text) html += `<p>${text}</p>`;
+      if (img) html += `<img src="${img}" alt="Image">`;
+      if (audio) html += `<audio controls src="${audio}"></audio>`;
 
-  let html = '';
-  if (text) html += `<p>${text}</p>`;
-  if (img) html += `<img src="${img}" alt="Image">`;
-  if (audio) html += `<audio controls src="${audio}"></audio>`;
-  if (video) html += `<video controls src="${video}"></video>`;
+      // Détection YouTube, Vimeo, Dailymotion
+      const ytMatch = video.match(/(?:youtube\\.com.*[?&]v=|youtu\\.be\\/)([\\w-]+)/);
+      if (ytMatch) {
+        html += `<iframe width="100%" height="315" src="https://www.youtube.com/embed/${ytMatch[1]}" frameborder="0" allowfullscreen></iframe>`;
+      } else {
+        const vimeoMatch = video.match(/vimeo\\.com\\/(\\d+)/);
+        const dmMatch = video.match(/dailymotion\\.com\\/video\\/([\\w]+)/);
+        if (vimeoMatch) {
+          html += `<iframe width="100%" height="315" src="https://player.vimeo.com/video/${vimeoMatch[1]}" frameborder="0" allowfullscreen></iframe>`;
+        } else if (dmMatch) {
+          html += `<iframe width="100%" height="315" src="https://www.dailymotion.com/embed/video/${dmMatch[1]}" frameborder="0" allowfullscreen></iframe>`;
+        } else if (video) {
+          html += `<video controls src="${video}"></video>`;
+        }
+      }
 
-  document.getElementById('preview').innerHTML = html;
-}
+      document.getElementById('preview').innerHTML = html;
+    }
 
-// Affiche la preview si on ouvre avec un lien
-window.onload = updatePreview;
-</script>
+    // Affiche la preview si on ouvre avec un lien
+    window.onload = updatePreview;
+  </script>
 </body>
 </html>
